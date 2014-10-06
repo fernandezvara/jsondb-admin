@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+#
+begin
+  require 'jsondb_admin/jsondb_admin.rb'
+rescue LoadError => e
+  require 'rubygems'
+  path = File.expand_path '../../lib', __FILE__
+  $:.unshift(path) if File.directory?(path) && !$:.include?(path)
+  require 'jsondb_admin.rb'
+end
+
+args_port   = ARGV[0] || 4567
+args_folder = ARGV[1] || "."
+
+# Run the app!
+#
+puts "JSONdbAdmin Application started."
+puts ""
+puts "Open your browser: http://localhost:#{args_port}/"
+puts ""
+JSONdbAdmin.port = args_port
+JSONdbAdmin.run!
